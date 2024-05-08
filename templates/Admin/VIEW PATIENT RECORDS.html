@@ -1,0 +1,36 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+{% extends 'admin/index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="">
+  <table width="302" height="159" border="1" class="table table-striped table-dark">
+                <tr align="center"><td colspan="9"><h3 ALIGN="center"> <font color="white">VIEW REPORTS</font></h3></td></tr>
+
+    <tr>
+      <td>ID</td>
+{#      <td>PATIENT  </td>#}
+      <td>REPORT</td>
+      <td>DATE</td>
+    </tr>
+       {% for i in val %}
+
+    <tr>
+      <td>{{ forloop.counter }}</td>
+{#      <td>{{ i.PATIENTID.fname }}</td>#}
+      <td><a href=" {{ i.report.url }}" download="">{{ i.report.url }}</a></td>
+      <td>{{ i.date }}</td>
+    </tr>
+       {% endfor %}
+
+  </table>
+
+</form>
+{% endblock %}
+{#</body>#}
+{#</html>#}

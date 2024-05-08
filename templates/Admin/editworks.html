@@ -1,0 +1,62 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+
+{% extends 'admin/index.html' %}
+{% block body %}
+
+<form id="form1" name="form1" method="post" action="/editwork">
+  <table width="244" height="267" border="1" class="table table-striped table-dark">
+              <tr align="center"><td colspan="9"><h3 ALIGN="center"> <font color="WHITE">EDIT WORKS</font></h3></td></tr>
+
+    <tr>
+      <td width="118">caretaker  </td>
+{#      <td width="110"><label>#}
+{#          #}
+{#      <input type="text" name="textfield" />#}
+{#      </label></td>#}
+        <td width="110"><label>
+          <select name="select">
+              {% for i in car %}
+                  <option value="{{ i.id }}">{{ i.fname }}{{ i.lname }}</option>
+              {% endfor %}
+          </select>
+      </label></td>
+    </tr>
+    <tr>
+      <td>work</td>
+      <td><label>
+      <input type="text" name="textfield2" value="{{ val.work }}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <td>details</td>
+      <td><label>
+      <input type="text" name="textfield3"  value="{{ val.details }}" />
+      </label></td>
+    </tr>
+    <tr>
+{#      <td>date</td>#}
+{#      <td><label>#}
+{#      <input type="text" name="textfield4" />#}
+      </label></td>
+    </tr>
+    <tr>
+{#      <td>status</td>#}
+{#      <td><input type="text" name="textfield5" /></td>#}
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input type="submit" name="Submit" value="EDIT"  class="btn btn-primary"/>
+      </td>
+    </tr>
+  </table>
+</form>
+{% endblock %}
+{#</body>#}
+{#</html>#}

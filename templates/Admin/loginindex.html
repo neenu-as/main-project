@@ -1,0 +1,95 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+{#<!DOCTYPE html>#}
+{% load static %}
+<html lang="en">
+<head>
+<title>Basic Login Form A Flat Responsive Widget Template  :: w3layouts</title>
+<link href="../static/login/css/font-awesome.css" rel="stylesheet"><!-- Font-awesome-CSS -->
+<link href="../static/login/css/style.css" rel='stylesheet' type='text/css'/><!-- style.css -->
+<link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Basic Login form  Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements" />
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		<script src="../static/login/js/jquery.min.js"></script>
+		<script>$(document).ready(function(c) {
+		$('.alert-close').on('click', function(c){
+			$('.main-agile').fadeOut('slow', function(c){
+				$('.main-agile').remove();
+			});
+		});
+	});
+	</script>
+</head>
+<body>
+<br>
+<br>
+<br>
+	<h2>HEALTH MONITORING SYSTEM WITH SMART SURVEILLANCE </h2>
+<br>
+<br>
+	<div class="main-agile">
+		<div class="alert-close"> </div>
+		<div class="content-wthree">
+		<div class="circle-w3layouts"></div>
+{#			<h2>Login</h2>#}
+			<form action="/logincode" method="post">
+								<div class="inputs-w3ls">
+{#									<i class="fa fa-user" aria-hidden="true"></i>#}
+									<input type="text" name="textfield" placeholder="Username" required=""/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								</div>
+								<div class="inputs-w3ls">
+
+									<input type="password" name="textfield2" placeholder="Password" required="" id="id_password" /><img src="https://media.geeksforgeeks.org/wp-content/uploads/20210917145551/eye.png"
+					width="30"
+					height="20"
+					style="{display: inline;
+						margin-left: -32px;
+						vertical-align: middle}"
+					id="togglePassword">
+								</div>
+									<input type="submit" value="LOGIN">
+									<div class="wthree-text">
+										<ul>
+{#											<li> <a href="changepsswd">Change password?</a> </li>#}
+										</ul>
+									</div>
+								</form>
+		</div>
+	</div>
+{#	<div class="footer-w3l">#}
+{#		<p class="agileinfo"> &copy; 2017 Basic Login Form. All Rights Reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>#}
+{#	</div>#}
+<script>
+		const togglePassword =
+			document.querySelector('#togglePassword');
+
+		const password =
+			document.querySelector('#id_password');
+
+		togglePassword.
+		addEventListener('click', function (e) {
+
+			// Toggle the type attribute
+			const type = password.getAttribute(
+				'type') === 'password' ? 'text' : 'password';
+			password.setAttribute('type', type);
+
+			// Toggle the eye slash icon
+			if (togglePassword.src.match(
+"https://media.geeksforgeeks.org/wp-content/uploads/20210917150049/eyeslash.png")) {
+				togglePassword.src =
+"https://media.geeksforgeeks.org/wp-content/uploads/20210917145551/eye.png";
+			} else {
+				togglePassword.src =
+"https://media.geeksforgeeks.org/wp-content/uploads/20210917150049/eyeslash.png";
+			}
+		});
+	</script>
+</body>
+</html>

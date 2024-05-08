@@ -1,0 +1,89 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+{% extends 'admin/index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/edit_crtkr" enctype="multipart/form-data">
+  <table width="244" height="267" border="1" class="table table-striped">
+                <tr align="center"><td colspan="9"><h3 ALIGN="center"> <font color="black">EDIT  CARETAKER</font></h3></td></tr>
+
+    <tr>
+      <td>first name </td>
+      <td><label>
+        <input type="text" name="textfield2" value="{{ val.fname }}" required="required" />
+      </label></td>
+    </tr>
+    <tr>
+      <td>last name </td>
+      <td><label>
+        <input type="text" name="textfield3" value="{{ val.lname }}"  required="required"/>
+      </label></td>
+    </tr>
+    <tr>
+      <td>gender</td>
+      <td><label>
+        <input name="radiobutton" type="radio" value="male" {% if val.gender == 'male' %} checked{% endif %}/>
+        M</label>
+          <label>
+          <input name="radiobutton" type="radio" value="female"  {% if val.gender == 'female' %} checked{% endif %} />
+            F</label>
+      </td>
+    </tr>
+    <tr>
+      <td>email</td>
+      <td><input type="email" name="textfield6" value="{{ val.email }}" required="required" pattern="[a-z0-9._]{3,20}[@][a-z]{3,10}[.][a-z]{2,10}"/>
+      </td>
+    </tr>
+    <tr>
+      <td>photo</td>
+      <td><input type="file" name="file" accept="image/*"/>
+          <img src="{{ val.photo.url }}" width="100dp" height="100dp" />
+      </td>
+    </tr>
+    <tr>
+      <td>phone</td>
+      <td><input type="text" name="textfield5"   value="{{ val.phone }}" required pattern="[6789][0-9]{9}"/></td>
+    </tr>
+
+
+      <tr>
+      <td>place</td>
+
+      <td> <label><input type="text"  name="textfield9" value="{{ val.place }}"  required="required"/>
+     </label> </td>
+    </tr>
+        <tr>
+      <td>post</td>
+
+      <td> <label><input type="text"  name="textfield10" value="{{ val.post }}" required="required" />
+     </label> </td>
+    </tr>
+        <tr>
+      <td>pin</td>
+
+      <td> <label><input type="text"  name="textfield11" value="{{ val.pin }}"  required="required"/>
+     </label> </td>
+    </tr>
+       <tr>
+      <td>Qualification</td>
+
+      <td> <label><input type="text"  name="textfield12" value="{{ val.qualification }}" required="required" />
+     </label> </td>
+    </tr>
+
+    <tr>
+    <tr>
+      <td colspan="2"><label>
+        <input type="submit" name="Submit" value="SAVE" />
+      </label></td>
+    </tr>
+  </table>
+</form>
+{%  endblock %}
+{#</body>#}
+{#</html>#}

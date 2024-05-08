@@ -1,0 +1,80 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+{% extends 'admin/index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="patient_needs_search">
+<table width="314" height="176" border="1" class="table table-striped table-dark">
+ <tr align="center"><td colspan="9"><h3 ALIGN="center"> <font color="white">APPROVE PATIENTS NEEDS</font></h3></td></tr>
+  <tr>
+    <td colspan="6">Enter caretaker name
+      <label>
+        <input type="text" name="textfield" />
+        <input type="submit" name="Submit" value="Search" />
+      </label></td>
+  </tr>
+  <tr>
+    <td >Caretaker </td>
+    <td >Patient name </td>
+    <td>Needs</td>
+    <td >Details</td>
+    <td >Date</td>
+      <td></td>
+{#    <td width="38" rowspan="2"><a href="patient_needs_verify">Approve</a></td>#}
+  </tr>
+{#    {% for i in val %}#}
+{#  <tr>#}
+{#    <td>{{ i.CARETAKERID.fname }}  {{ i.CARETAKERID.lname }}</td>#}
+{#    <td>{{ i.PATIENTID.fname}}   {{ i.PATIENTID.lname }}</td>#}
+{#    <td>{{ i.needs  }}</td>#}
+{#    <td>&nbsp;{{ i.details }}</td>#}
+{#      <td>{% if i.status == "pending" %}<a href="/patient_needs_verify/{{ i.id }}" class="btn btn-primary">Approve</a>{% else %} {{ i.status  }} {% endif %}</td>#}
+{##}
+{#  </tr>#}
+{#     {% endfor %}#}
+
+
+{% for i in my_objects %}
+  <tr>
+    <td>{{ i.CARETAKERID.fname }}  {{ i.CARETAKERID.lname }}</td>
+    <td>{{ i.PATIENTID.fname}}   {{ i.PATIENTID.lname }}</td>
+    <td>{{ i.needs  }}</td>
+    <td>&nbsp;{{ i.details }}</td>
+    <td>{{ i.date }}</td>
+      <td>{% if i.status == "pending" %}<a href="/patient_needs_verify/{{ i.id }}" class="btn btn-primary">Approve</a>{% else %} {{ i.status  }} {% endif %}</td>
+
+  </tr>
+     {% endfor %}
+
+
+
+<td colspan="13">
+
+          <div class="pagination">
+    <span class="step-links">
+        {% if my_objects.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ my_objects.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ my_objects.number }} of {{ my_objects.paginator.num_pages }}.
+        </span>
+
+        {% if my_objects.has_next %}
+            <a href="?page={{ my_objects.next_page_number }}">next</a>
+            <a href="?page={{ my_objects.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+          </div>
+</td>
+</table>
+</form>
+{% endblock %}
+{#</body>#}
+{#</html>#}

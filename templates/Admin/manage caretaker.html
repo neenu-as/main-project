@@ -1,0 +1,108 @@
+
+{% extends 'admin/index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="search_crtkr#about">
+  <table class="table table-striped table-dark">
+    <tr align="center"><td colspan="11"><h3 ALIGN="center"> <font color="white">ADD & MANAGE  CARETAKER</font></h3></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    </tr>
+
+    <tr>
+      <td colspan="13">Enter name
+        <label>
+        <input type="text" name="textfield" />
+        <input type="submit" name="Submit" value="Search" />
+</label><div align="right"><a href="/add_caretkr#about" class="btn btn-primary" title="Add new" ><i class="bi bi-person-fill-add"></i></a></div> </td>
+        <td></td>
+    </tr>
+    <tr>
+      <td >ID</td>
+      <td width="150"> NAME </td>
+{#      <td >LAST NAME </td>#}
+      <td >GENDER</td>
+      <td >EMAIL</td>
+      <td >PHOTO</td>
+      <td >PHONE</td>
+         <td >ADDRESS</td>
+
+      <td >QUALIFICATION</td>
+      <td >Joined Date</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+
+
+    </tr>
+
+{% for i in my_objects %}
+    <tr>
+      <td>{{ my_objects.start_index|add:forloop.counter0 }}</td>
+
+      <td>&nbsp;{{ i.fname }} {{ i.lname }}</td>
+{#        <td>{{ i.lname }}</td>#}
+      <td>&nbsp;{{ i.gender }}</td>
+      <td>&nbsp;{{ i.email }}</td>
+
+      <td><img src="{{ i.photo.url }}" width="100" height="100"></td>
+      <td>&nbsp;{{ i.phone }}</td>
+         <td>&nbsp;{{ i.place }}<br> {{ i.post }} <br>{{ i.pin }}</td>
+         <td>&nbsp;{{ i.qualification }}</td>
+         <td>&nbsp;{{ i.join_date }}</td>
+
+        <td><p><a href="/edit_caretkr/{{ i.id }}#about" class="btn btn-success" title="Edit"> <i class="bi bi-pencil-square"></i></a></p></td><br>
+
+        {% if i.LOGINID.type == 'caretaker' %}
+
+      <td><a href="inactivecaretkr/{{ i.LOGINID.id }}" class="btn btn-primary" title="Inactive"> <i class="bi bi-check-circle-fill"></i></a></td>
+                    {% else %}
+        <td><a href="activecaretkr/{{ i.LOGINID.id }}" class="btn btn-danger" title="Active"><i class="bi bi-circle"></i>        </a></td>
+
+        {% endif %}
+
+ <td></td>
+ <td></td>
+ <td></td>
+{#      <p><a href="/dlt_ckr/{{ i.LOGINID.id }}#about" class="btn btn-outline-danger"  onclick="return confirm('Do you want to delete')"><i class="bi bi-trash3-fill"></i></a></p></td>#}
+    </tr>
+
+{% endfor %}
+{#    <tr>#}
+  {#  ///////////////////////////#}
+  <td colspan="14">
+
+          <div class="pagination">
+    <span class="step-links">
+        {% if my_objects.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ my_objects.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ my_objects.number }} of {{ my_objects.paginator.num_pages }}.
+        </span>
+
+        {% if my_objects.has_next %}
+            <a href="?page={{ my_objects.next_page_number }}">next</a>
+            <a href="?page={{ my_objects.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+      </td>{#    </tr>#}
+{#  ///////////////////////////#}
+  </table>
+</form>
+{% endblock %}
+{#</body>#}
+{#</html>#}
+
+
+
+
+
+

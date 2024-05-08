@@ -1,0 +1,79 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+{% extends 'admin/index.html' %}
+{% block body %}
+<form action="/editpatientinfo_post" method="post" enctype="multipart/form-data" name="form1" id="form1">
+  <table width="377" height="321" border="1" class="table table-striped table-dark">
+              <tr align="center"><td colspan="9"><h3 ALIGN="center"> <font color="white">EDIT PATIENTS</font></h3></td></tr>
+
+    <tr>
+      <td width="163" height="44">First name </td>
+      <td width="198"><input type="text" name="textfield2" value="{{ val.fname }}"/></td>
+    </tr>
+    <tr>
+      <td>Last name </td>
+      <td><label>
+        <input type="text" name="textfield" value="{{ val.lname }}" />
+      </label></td>
+    </tr>
+    <tr>
+      <td>Gender </td>
+      <td><label>
+        <input name="radiobutton" type="radio" value="male" {% if val.gender == 'male' %} checked{% endif %}/>
+        M</label>
+          <label>
+          <input name="radiobutton" type="radio" value="female"  {% if val.gender == 'female' %} checked{% endif %} />
+            F</label>
+       <label>
+          <input name="radiobutton" type="radio" value="other" />
+            other</label>
+      </td>
+    <tr>
+      <td>Age</td>
+      <td><input type="number" name="textfield3"  value="{{ val.age }}"  required pattern="[0-9][65-110]" min="65" max="110"/></td>
+    </tr>
+    <tr>
+      <td>photo</td>
+      <td><input type="file" name="file2" accept="image/*"/>
+          <img src="{{ val.photo.url }}" width="100dp" height="100dp" />
+      </td>
+    </tr>
+    <tr>
+      <td>Caretaker</td>
+    <td>
+      <select name="select">
+              {% for i in val1 %}
+                  <option value="{{ i.id }}" {% if i.id == cid %} selected {% endif %}>{{ i.fname }}{{ i.lname }}</option>
+              {% endfor %}
+          </select>
+    </td>
+    </tr>
+    <tr>
+      <td>Health condition</td>
+      <td><label>
+      <input type="text"   name="textfield4" value="{{ val.healthcondition }}"/>
+      </label></td>
+    </tr>
+   <tr>
+        <tr>
+      <td>Admitted Date      </td>
+      <td><label>
+      <input type="date" name="textfield40" value="{{ dt }}" required class="form-control"/>
+      </label></td>
+    </tr>
+      <td colspan="2"><label>
+        <input type="submit" name="Submit" value="SAVE" class="btn btn-outline-success"/>
+      </label></td>
+    </tr>
+  </table>
+</form>
+
+{% endblock %}
+{#</body>#}
+{#</html>#}

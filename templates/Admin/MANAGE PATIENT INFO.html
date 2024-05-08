@@ -1,0 +1,120 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+{% extends 'admin/index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/manage_patient_info_search">
+  <table width="547" height="202" border="1" class="table table-striped table-dark">
+      <tr align="center"><td colspan="11"><h3 ALIGN="center"> <font color="white">ADD & MANAGE PATIENTS</font></h3><td></td>
+
+
+    <tr>
+      <td colspan="12">ENTER NAME
+        <label>
+        <input type="text" name="textfield" />
+        <input type="submit" name="Submit" value="SEARCH" />
+</label></td>
+
+
+    </tr>
+      <td colspan="11"><div align="right"><a href="add_patient_info#about"  class="btn btn-primary" title="Add new"><i class="bi bi-person-fill-add"></i></a></div></td>
+  <td></td>
+</tr>
+    <tr>
+      <td >ID</td>
+      <td > NAME </td>
+{#      <td >LAST NAME </td>#}
+      <td >GENDER </td>
+        <td>AGE </td>
+      <td >PHOTO</td>
+      <td>CARETAKER  </td>
+      <td >TYPE </td>
+      <td >HEALTH CONDITION </td>
+      <td >Admitted Date </td>
+        <td></td>
+        <td></td>
+        <td></td>
+
+    </tr>
+      {% for i in my_objects %}
+    <tr>
+    {% if i.type == "no more" %}
+         <td style="color: red">{{ my_objects.start_index|add:forloop.counter0 }}</td>
+{#      <td style="color: red">{{ forloop.counter }}</td>#}
+      <td style="color: red">{{ i.fname }}{{ i.lname }}</td>
+
+      <td style="color: red">{{ i.gender }}</td>
+      <td style="color: red">{{ i.age }}</td>
+      <td style="color: red"><img src="{{ i.photo.url }}" width="100" height="100"></td>
+      <td style="color: red">{{ i.CARETAKERID.fname }} {{ i.CARETAKERID.lname}}</td>
+        <td style="color: red">{{ i.type }}</td>
+        <td style="color: red">{{ i.healthcondition }}</td>
+        <td style="color: red">{{ i.admit_date }}</td>
+              <td><a href="/view_patient_recods/{{ i.id }}">view reports</a></td>
+        <td></td>
+        <td></td>
+
+{#        <td ><p><a href="/edit_patient_info/{{ i.id }}"  class="btn btn-success">  <i class="bi bi-pencil-square"></i></a></p>#}
+{#      <p><a href="deletepatientinfo/{{ i.id }}#about" button type="button" class="btn btn-danger" onclick="return confirm('Do you want to delete')"> <i class="bi bi-trash3-fill"></i></a></p>#}
+{#        {% if i.type == "alive" %}#}
+{#            <p><a href="/manage_patient_info_update_death/{{ i.id }}"  class="btn btn-outline-secondary" title="death update"> <i class="bi bi-circle"></i>  </a></p></td>#}
+{#      {% endif %}#}
+        {%else%}
+        <td >{{ forloop.counter }}</td>
+      <td >{{ i.fname }} {{ i.lname }}</td>
+{#      <td>{{ i.lname }}</td>#}
+      <td >{{ i.gender }}</td>
+      <td >{{ i.age }}</td>
+      <td><img src="{{ i.photo.url }}" width="100" height="100"></td>
+      <td>{{ i.CARETAKERID.fname }} {{ i.CARETAKERID.lname}}</td>
+        <td >{{ i.type }}</td>
+        <td >{{ i.healthcondition }}</td>
+        <td >{{ i.admit_date }}</td>
+              <td><a href="/view_patient_recods/{{ i.id }}">view reports</a></td>
+
+        <td ><p><a href="/edit_patient_info/{{ i.id }}"  class="btn btn-success" title="Edit">  <i class="bi bi-pencil-square"></i></a></p>
+      <p><a href="deletepatientinfo/{{ i.id }}#about" button type="button" class="btn btn-danger" title="Delete" onclick="return confirm('Do you want to delete')"> <i class="bi bi-trash3-fill"></i></a></p>
+        {% if i.type == "alive" %}
+            <p><a href="/manage_patient_info_update_death/{{ i.id }}"  class="btn btn-secondary" title="Death update"> <i class="bi bi-circle"></i>  </a></p></td>
+
+<td></td>
+
+    {% endif %}
+    {% endif %}
+    </tr>
+
+
+
+
+
+      {% endfor %}
+   <td colspan="13">
+
+          <div class="pagination">
+    <span class="step-links">
+        {% if my_objects.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ my_objects.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ my_objects.number }} of {{ my_objects.paginator.num_pages }}.
+        </span>
+
+        {% if my_objects.has_next %}
+            <a href="?page={{ my_objects.next_page_number }}">next</a>
+            <a href="?page={{ my_objects.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+{#    <tr>#}
+{#      <td colspan="10"><a href="add_patient_info#about"  class="btn btn-primary">ADD NEW+ </a></td>#}
+{#    </tr>#}
+  </table>
+</form>
+{% endblock %}
+{#</body>#}
+{#</html>#}

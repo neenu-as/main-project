@@ -1,0 +1,171 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+
+{#{% extends 'admin/index.html' %}#}
+{% extends 'admin/formindex.html' %}
+{% block body %}
+<body>
+
+<form id="form1" name="form1"  method="post" action="/addcartkr" enctype="multipart/form-data">
+  <table width="244" height="267" class="table table-striped table-dark" border="1">
+          <tr align="center"><td colspan="9"><h3 ALIGN="center"> <font color="black">ADD  CARETAKER</font></h3></td></tr>
+
+    <tr>
+      <td>first name </td>
+      <td><label>
+        <input type="text"  name="textfield2" required pattern="[A-Z a-z .]{3,25}" />
+      </label></td>
+    </tr>
+    <tr>
+      <td>last name </td>
+      <td><label>
+        <input type="text"  name="textfield3" required pattern="[A-Z a-z .]{2,25}" />
+      </label></td>
+    </tr>
+    <tr>
+      <td>gender</td>
+      <td><label>
+        <input name="radiobutton" type="radio" value="male" checked="checked"/>
+        M</label>
+          <label>
+          <input name="radiobutton" type="radio" value="female" />
+            F</label>
+           <label>
+          <input name="radiobutton" type="radio" value="other" />
+            other</label>
+      </td>
+    </tr>
+    <tr>
+      <td>email</td>
+
+      <td> <label><input type="email"  name="textfield6" required="required" pattern="[a-z0-9._]{3,20}[@][a-z]{3,10}[.][a-z]{2,10}"/>
+     </label> </td>
+    </tr>
+
+      <tr>
+      <td>place</td>
+
+      <td> <label><input type="text"  name="textfield9" required="required" />
+     </label> </td>
+    </tr>
+        <tr>
+      <td>post</td>
+
+      <td> <label><input type="text"  name="textfield10" required="required" />
+     </label> </td>
+    </tr>
+        <tr>
+      <td>pin</td>
+
+      <td> <label><input type="text"  name="textfield11" required="required" />
+     </label> </td>
+    </tr>
+       <tr>
+      <td>Qualification</td>
+
+      <td> <label><input type="text"  name="textfield12" required="required" />
+     </label> </td>
+    </tr>
+
+    <tr>
+      <td>photo</td>
+      <td><label><input type="file"  name="file"  required="required"  accept="image/*"/>
+      </label> </td>
+    </tr>
+    <tr>
+      <td>phone</td>
+      <td><label><input type="text"  name="textfield5" required pattern="[6789][0-9]{9}"/></label></td>
+    </tr>
+    <tr> </tr>
+    <tr>
+      <td>USER NAME</td>
+      <td><input type="text" name="textfield7" required="required" id="un"/>
+          <div id="uu"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>PASSWORD</td>
+      <td><input type="password"  name="textfield8" autocomplete="current-password"
+					required=""
+					id="id_password" />
+				<img src="https://media.geeksforgeeks.org/wp-content/uploads/20210917145551/eye.png"
+					width="30"
+					height="20"
+					style="{display: inline;
+						margin-left: 32px;
+						vertical-align: middle}"
+					id="togglePassword">
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2"><label>
+        <input type="submit" name="Submit" value="ADD" class="btn btn-outline-success"/>
+      </label></td>
+    </tr>
+  </table>
+</form>
+<script>
+		const togglePassword =
+			document.querySelector('#togglePassword');
+
+		const password =
+			document.querySelector('#id_password');
+
+		togglePassword.
+		addEventListener('click', function (e) {
+
+			// Toggle the type attribute
+			const type = password.getAttribute(
+				'type') === 'password' ? 'text' : 'password';
+			password.setAttribute('type', type);
+
+			// Toggle the eye slash icon
+			if (togglePassword.src.match(
+"https://media.geeksforgeeks.org/wp-content/uploads/20210917150049/eyeslash.png")) {
+				togglePassword.src =
+"https://media.geeksforgeeks.org/wp-content/uploads/20210917145551/eye.png";
+			} else {
+				togglePassword.src =
+"https://media.geeksforgeeks.org/wp-content/uploads/20210917150049/eyeslash.png";
+			}
+		});
+	</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+
+    $("#un").keyup(function () {
+      var username = $(this).val();
+
+
+    $.ajax(
+    {
+        type:"GET",
+        url: "/check_uname_web",
+        data:{
+                 username: username
+
+
+        },
+        dataType: 'json',
+        success: function( data )
+        {
+
+            if (data.is_taken) {
+            document.getElementById("uu").innerText="Username is already existing";
+          }
+          else
+            { document.getElementById("uu").innerText="";}
+        }
+     })
+})
+    });
+</script>
+</body>
+{% endblock %}
